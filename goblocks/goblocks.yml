@@ -1,0 +1,113 @@
+# Full Goblocks config example with all available block types and options.
+
+# The global section contains global config options.
+
+global:
+    # debug is a boolean indicating whether or not to pretty print the json
+    # output. Note that this setting requires a restart in order to take
+    # effect.
+    debug: False
+    # refresh_interval is a floating point number indicating the time interval
+    # in seconds between when Goblocks sends an updated status line to i3bar.
+    # Basically, it controls Goblocks' "frame rate". This value defaults to 1.
+    # Note that this value also serves as the default update_interval value for
+    # each block.
+    refresh_interval: 1
+
+# Below is the per-block configuration. The blocks are defined in a YAML array.
+
+# Each block must have a type field indicating which status indicator to use for
+# that block. Different status indicators can have different configuration
+# fields.
+
+# Each block may optionally have an update_interval field indicating the time
+# interval in seconds between block updates. This is a floating point number,
+# allowing for fractions of a second. Note that this interval does not affect
+# the refresh rate of Goblocks' output; it only impacts the timing in which a
+# block's info gets updated. If update_interval is omitted, then the
+# refresh_interval value in the global section is used as the update_interval.
+
+# Each block may optionally have a label field indicating a prefix string to
+# prepend to the block's status text.
+
+# If a block has an update_signal field, then that block will be updated and
+# Goblocks refreshed when Goblocks receives an RTMIN signal offset by the given
+# signal number. See the volume block config.
+# For example, if update_signal is 1, then running 'pkill -RTMIN+1 goblocks'
+# will cause Goblocks to update the block and refresh.
+# The update_signal value must be 1 or greater.
+
+# Blocks may optionally have a color field that specifies the default color of
+# the block text, using the 6 digit hex RGB format (e.g. #00ff00 for green).
+
+blocks:
+    - type: load
+      label: "CPU: "
+      crit_load: 4
+
+    - type: temperature
+      cpu_temp_path: /sys/devices/platform/coretemp.0/hwmon
+      crit_temp: 55
+
+    - type: memory
+      label: "MEM: "
+      crit_mem: 1
+
+    - type: disk
+      label: "HDD: "
+      # filesystems is a map of strings to floating point numbers. The strings
+      # are the filesystems you want to check, and the numbers are the
+      # critical usage percentages for those filesystems.
+      filesystems:
+          /: 90
+          /home: 90
+
+    - type: wifi
+      label: "WiFi "
+      interface_name: wlp3s0
+      crit_quality: 30
+
+    - type: battery
+      label: "B0: "
+      # The battery number can be found in /sys/class/power_supply/
+      battery_number: 0
+      crit_battery: 20
+
+    - type: battery
+      label: "B1: "
+      # The battery number can be found in /sys/class/power_supply/
+      battery_number: 1
+      crit_battery: 20
+
+    - type: command
+      update_signal: 1
+      refresh_interval: 5
+      label: "Vol: "
+      command: './Apps/i3-config/scripts/volume/volume.sh get'
+      crit_value: "40"
+      crit_operator: '='
+      append: "%"
+
+      ####
+      # I wanted more control over the command module
+      # Operators supported are '<', '>' and '='
+      ####
+      # example of manual battery command
+    - type: command
+      #update_signal: 1
+      #refresh_interval: 5
+      label: "Battery Example: "
+      # get the battery percentage from /sys...
+      command: 'cat /sys/class/power_supply/BAT1/capacity'
+      # append a percentage sign to it...
+      append: "%"
+      # if the returned value is less than...
+      crit_operator: '<'
+      # 10, mark as critical
+      crit_value: "10"
+
+    - type: time
+      update_interval: 1
+      # The time_format value must be a string in Go's standard time format
+      # (see https://golang.org/pkg/time/#pkg-constants).
+      time_format: 2006-01-02 15:04
