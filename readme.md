@@ -4,7 +4,7 @@
 
 ## Installation
 ```
-sudo apt-get install i3 i3lock scrot xbacklight;
+sudo apt-get install i3 i3lock scrot xbacklight j4-dmenu-desktop;
 mkdir -p ~/Apps
 cd ~/Apps
 git clone --recursive git@bitbucket.org:eLands/i3-config.git;
