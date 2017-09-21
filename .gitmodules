@@ -1,0 +1,6 @@
+[submodule "submodules/i3lock-fancy"]
+	path = submodules/i3lock-fancy
+	url = git@github.com:meskarune/i3lock-fancy.git
+[submodule "submodules/lightsonplus"]
+	path = submodules/lightsonplus
+	url = git@github.com:devkral/lightsonplus.git
