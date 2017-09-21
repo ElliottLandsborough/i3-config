@@ -10,6 +10,26 @@ PERCENTAGE=$2; # e. 100 (%)
 LINK=$(pactl list short sinks | grep RUNNING | cut -f1);
 CURRENTVOLUME=$(pactl list sinks | grep '^[[:space:]]Volume:' | \
     head -n $(( $LINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,');
+
+MUTED=$(pacmd dump | awk '
+  $1 == "set-sink-mute" {m[$2] = $3}
+  $1 == "set-default-sink" {s = $2}
+  END {print m[s]}');
+
+if [ "${MODE}" == 'get' ]
+	then
+		if [ "${LINK}" == '' ]
+			then
+				echo 'N/A';
+		elif [ "${MUTED}" == 'yes' ]
+			then
+				echo 'Mute'; 
+		else
+			echo "${CURRENTVOLUME}";
+		fi
+		exit;
+fi
+
 DESIREDVOLUME=CURRENTVOLUME; # init the value
 
 if [ "${MODE}" == 'set' ]
@@ -33,3 +53,4 @@ if test $DESIREDVOLUME -gt $MAX
 fi
 
 pactl set-sink-volume 1 ${DESIREDVOLUME}%;
+pkill -RTMIN+1 goblocks;
