@@ -171,8 +171,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command /home/elliott/go/src/github.com/davidscholberg/goblocks/goblocks
-    #status_command goblocks
+    #status_command /home/elliott/go/src/github.com/davidscholberg/goblocks/goblocks
+    # go get github.com/ElliottLandsborough/goblocks
+    status_command goblocks
 	#status_command i3status
     #colors {
     #    statusline #AAAAAA
