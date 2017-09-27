@@ -4,3 +4,6 @@
 [submodule "submodules/lightsonplus"]
 	path = submodules/lightsonplus
 	url = git@github.com:devkral/lightsonplus.git
+[submodule "submodules/goblocks"]
+	path = submodules/goblocks
+	url = https://github.com/ElliottLandsborough/goblocks
