@@ -121,7 +121,7 @@ bindsym $mod+Mod1+Left workspace prev
 bindsym $mod+Mod1+Right workspace next
 
 bindsym $mod+Mod1+Shift+Left move container to workspace prev
-bindsym $mod+Mod1+Shift+Right move container to worpspace next
+bindsym $mod+Mod1+Shift+Right move container to workspace next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
