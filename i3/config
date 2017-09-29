@@ -47,6 +47,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque_ste.png
 #exec --no-startup-id feh --bg-scale /home/elliott/Pictures/Wallpapers/long-exposure-of-the-eclipse-x-post-from-rwoahdude-1920×1080.grayscale.jpg
 
+# keyboard heatmap
+exec --no-startup-id inputscope-listener
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
