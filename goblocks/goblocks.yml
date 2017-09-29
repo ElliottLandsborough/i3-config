@@ -67,18 +67,6 @@ blocks:
       interface_name: wlp3s0
       crit_quality: 30
 
-    - type: battery
-      label: "B0: "
-      # The battery number can be found in /sys/class/power_supply/
-      battery_number: 0
-      crit_battery: 20
-
-    - type: battery
-      label: "B1: "
-      # The battery number can be found in /sys/class/power_supply/
-      battery_number: 1
-      crit_battery: 20
-
     - type: command
       update_signal: 1
       refresh_interval: 5
@@ -88,23 +76,16 @@ blocks:
       crit_operator: '='
       append: "%"
 
-      ####
-      # I wanted more control over the command module
-      # Operators supported are '<', '>' and '='
-      ####
-      # example of manual battery command
     - type: command
       #update_signal: 1
-      #refresh_interval: 5
-      label: "Battery Example: "
-      # get the battery percentage from /sys...
-      command: 'cat /sys/class/power_supply/BAT1/capacity'
-      # append a percentage sign to it...
+      refresh_interval: 5
+      label: "Bat: "
+      command: './Apps/i3-config/scripts/battery/battery.sh'
       append: "%"
       # if the returned value is less than...
-      crit_operator: '<'
+      #crit_operator: '<'
       # 10, mark as critical
-      crit_value: "10"
+      #crit_value: "20"
 
     - type: time
       update_interval: 1
