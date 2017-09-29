@@ -9,7 +9,8 @@ MODE=$1; # e.g + or - or 'set'
 PERCENTAGE=$2; # e. 100 (%)
 LINK=$(pactl list short sinks | grep RUNNING | cut -f1);
 CURRENTVOLUME=$(pactl list sinks | grep '^[[:space:]]Volume:' | \
-    head -n $(( $LINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,');
+    head -n $(( $LINK + 0 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,');
+CURRENTVOLUME=0;
 
 MUTED=$(pacmd dump | awk '
   $1 == "set-sink-mute" {m[$2] = $3}
@@ -52,5 +53,5 @@ if test $DESIREDVOLUME -gt $MAX
     	DESIREDVOLUME=$MAX;
 fi
 
-pactl set-sink-volume 1 ${DESIREDVOLUME}%;
+pactl set-sink-volume ${LINK} ${DESIREDVOLUME}%;
 pkill -RTMIN+1 goblocks;
