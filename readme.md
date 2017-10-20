@@ -17,4 +17,5 @@ mv ~/.config/goblocks/goblocks.yml ~/.config/goblocks/goblocks.yml;
 ln -s ~/Apps/i3-config/i3/config ~/.config/i3/config;
 ln -s ~/Apps/i3-config/i3status/config ~/.config/i3status/config;
 ln -s ~/Apps/i3-config/goblocks/goblocks.yml ~/.config/goblocks/goblocks.yml;
+go get github.com/ElliottLandsborough/goblocks;
 ```
