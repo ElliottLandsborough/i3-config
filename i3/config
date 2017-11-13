@@ -21,7 +21,7 @@ set $term "i3-sensible-terminal"
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-font pango: Ubuntu Mono 10
+font pango: Ubuntu Mono 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -43,15 +43,23 @@ bindsym $mod+Shift+q kill
 # network manager on startup
 exec --no-startup-id nm-applet
 
+# wireless
+exec --no-startup-id wicd-gtk -t
+
 # wallpaper
 exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque_ste.png
 #exec --no-startup-id feh --bg-scale /home/elliott/Pictures/Wallpapers/long-exposure-of-the-eclipse-x-post-from-rwoahdude-1920×1080.grayscale.jpg
 
-# wireless
-exec --no-startup-id wicd-gtk -t
+# dual screen
+#exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --auto --output DVI-D-0 --auto --right-of HDMI-0 --rotate left
 
 # keyboard heatmap
 exec --no-startup-id inputscope-listener
+
+# print screen
+bindsym --release Print exec "scrot -m '/home/elliott/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+bindsym --release Shift+Print exec "scrot -s '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+bindsym --release $mod+Shift+Print exec "scrot -u -d 4 '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
