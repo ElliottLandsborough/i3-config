@@ -53,9 +53,6 @@ exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque
 # dual screen
 #exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --auto --output DVI-D-0 --auto --right-of HDMI-0 --rotate left
 
-# keyboard heatmap
-exec --no-startup-id inputscope-listener
-
 # print screen
 bindsym --release Print exec "scrot -m '/home/elliott/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
 bindsym --release Shift+Print exec "scrot -s '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
