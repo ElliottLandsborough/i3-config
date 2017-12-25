@@ -41,7 +41,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # network manager on startup
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 # wireless
 exec --no-startup-id wicd-gtk -t
@@ -52,6 +52,17 @@ exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque
 
 # dual screen
 #exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --auto --output DVI-D-0 --auto --right-of HDMI-0 --rotate left
+
+# print screen
+bindsym --release Print exec "scrot -m '/home/elliott/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+bindsym --release Shift+Print exec "scrot -s '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+bindsym --release $mod+Shift+Print exec "scrot -u -d 4 '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+
+# blueman
+exec --no-startup-id blueman-applet
+
+# power manager
+exec --no-startup-id xfce4-power-manager
 
 # print screen
 bindsym --release Print exec "scrot -m '/home/elliott/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
@@ -241,7 +252,7 @@ mode $audiomenu {
 
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"q
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
