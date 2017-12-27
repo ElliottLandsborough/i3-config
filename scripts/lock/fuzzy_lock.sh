@@ -1,4 +1,5 @@
 #!/bin/sh -e
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 # Take a screenshot
 scrot /tmp/screen_locked.png
