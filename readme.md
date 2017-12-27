@@ -24,3 +24,57 @@ go get github.com/ElliottLandsborough/goblocks;
 ```
 grep -Fxq "open" /proc/acpi/button/lid/LID/state
 ```
+
+## Lock Screen On Sleep/Suspend
+```
+sudo nano /etc/systemd/system/lockscreen.service
+```
+
+```
+[Unit]
+Description=User suspend actions
+Before=sleep.target
+
+[Service]
+#User=%I
+User=elliott
+Type=forking
+Environment=DISPLAY=:0
+#ExecStartPre= -/usr/bin/pkill -u %u unison ; /usr/local/bin/music.sh stop ; /usr/bin/mysql -e 'slave stop'
+#ExecStart=/usr/bin/sflock
+#ExecStart=/usr/bin/i3lock -c 000000
+ExecStart=/usr/bin/i3lock -i /home/elliott/Pictures/Lockscreens/bsod10.png
+#ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target
+```
+
+
+```
+sudo nano /lib/systemd/system-sleep/lockscreen
+```
+
+```
+#!/bin/sh
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+case $1/$2 in
+  pre/*)
+    echo "Going to $2..."
+    # Place your pre suspend commands here, or `exit 0` if no pre suspend action required
+    #DISPLAY=:0 sudo -H -u elliott bash -c 'sh /home/elliott/Apps/i3-config/scripts/lock/fuzzy_lock.sh &' &
+    service lockscreen start
+    #exit 0
+    ;;
+  post/*)
+    echo "Waking up from $2..."
+    # Place your post suspend (resume) commands here, or `exit 0` if no post suspend action required
+    exit 0
+    ;;
+esac
+```
+
+```
+sudo chmod +x /lib/systemd/system-sleep/lockscreen
+```
