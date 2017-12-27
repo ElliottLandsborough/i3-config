@@ -62,31 +62,6 @@ blocks:
           /: 90
           /home: 90
 
-    - type: wifi
-      label: "WiFi "
-      interface_name: wlp3s0
-      crit_quality: 30
-
-    - type: command
-      update_signal: 1
-      refresh_interval: 5
-      label: "Vol: "
-      command: './Apps/i3-config/scripts/volume/volume.sh get'
-      crit_value: "40"
-      crit_operator: '='
-      append: "%"
-
-    - type: command
-      #update_signal: 1
-      refresh_interval: 5
-      label: "Bat: "
-      command: './Apps/i3-config/scripts/battery/battery.sh'
-      append: "%"
-      # if the returned value is less than...
-      #crit_operator: '<'
-      # 10, mark as critical
-      #crit_value: "20"
-
     - type: time
       update_interval: 1
       # The time_format value must be a string in Go's standard time format
