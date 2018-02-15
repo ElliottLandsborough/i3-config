@@ -230,16 +230,15 @@ mode $sysmenu {
 }
 
 # audio menu
-set $audiomenu "volume:  [+]10%  [-]10%  [m]ute  [r]eset"
+set $audiomenu "volume:  [-]10% [+]10% [m]ute"
 bindsym $mod+F12         mode $audiomenu
 
 mode $audiomenu {
-    bindsym r             exec --no-startup-id ~/Apps/i3-config/scripts/volume/volume.sh set 100
-    bindsym plus          exec --no-startup-id ~/Apps/i3-config/scripts/volume/volume.sh +
-    bindsym KP_Add        exec --no-startup-id ~/Apps/i3-config/scripts/volume/volume.sh +
-    bindsym minus         exec --no-startup-id ~/Apps/i3-config/scripts/volume/volume.sh -
-    bindsym KP_Subtract   exec --no-startup-id ~/Apps/i3-config/scripts/volume/volume.sh -
-    bindsym m             exec --no-startup-id pactl set-sink-mute 1 toggle
+    bindsym plus          exec --no-startup-id "amixer -q sset Master,0 1+ unmute"
+    bindsym KP_Add        exec --no-startup-id "amixer -q sset Master,0 1+ unmute"
+    bindsym minus         exec --no-startup-id "amixer -q sset Master,0 1- unmute"
+    bindsym KP_Subtract   exec --no-startup-id "amixer -q sset Master,0 1- unmute"
+    bindsym m             exec --no-startup-id "amixer -q -D pulse sset Master toggle"
     bindsym Return        mode "default"
     bindsym Escape        mode "default"
 }
