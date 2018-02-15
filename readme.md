@@ -78,3 +78,52 @@ esac
 ```
 sudo chmod +x /lib/systemd/system-sleep/lockscreen
 ```
+
+# Packages installed after OS install
+
+comm -13 \
+  <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort) \
+  <(comm -23 \
+    <(dpkg-query -W -f='${Package}\n' | sed 1d | sort) \
+    <(apt-mark showauto | sort) \
+  )
+
+apt-transport-https
+curl
+feh
+gdebi
+git
+gksu
+google-chrome-stable
+gtk-chtheme
+i3
+i3lock
+intel-microcode
+j4-dmenu-desktop
+leafpad
+libapache2-mod-php7.1
+libpng-dev
+lxappearance
+mariadb-server
+nginx
+numix-blue-gtk-theme
+numix-icon-theme
+openssh-server
+p7zip-rar
+php7.1-pgsql
+php7.1-sqlite3
+php7.1-xml
+php-cli
+php-fpm
+php-mbstring
+php-mysql
+php-xml
+qt4-qtconfig
+scrot
+smartgit
+sublime-text
+synaptic
+vlc
+wicd-gtk
+xbacklight
+xfce4-goodies
