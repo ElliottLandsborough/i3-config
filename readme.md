@@ -4,7 +4,7 @@
 
 ## Installation
 ```
-sudo apt install i3 i3lock scrot xbacklight j4-dmenu-desktop imagemagick;
+sudo apt install i3 i3lock scrot xbacklight j4-dmenu-desktop imagemagick feh wicd-gtk xfce4-power-manager;
 mkdir -p ~/Apps
 cd ~/Apps
 git clone --recursive git@bitbucket.org:eLands/i3-config.git;
