@@ -4,7 +4,7 @@
 
 ## Installation
 ```
-sudo apt install i3 i3lock scrot xbacklight j4-dmenu-desktop imagemagick feh wicd-gtk xfce4-power-manager;
+sudo apt install i3 i3lock scrot xbacklight j4-dmenu-desktop imagemagick feh wicd-gtk xfce4-power-manager shutter;
 mkdir -p ~/Apps
 cd ~/Apps
 git clone --recursive git@bitbucket.org:eLands/i3-config.git;
@@ -18,6 +18,13 @@ ln -s ~/Apps/i3-config/i3/config ~/.config/i3/config;
 ln -s ~/Apps/i3-config/i3status/config ~/.config/i3status/config;
 ln -s ~/Apps/i3-config/goblocks/goblocks.yml ~/.config/goblocks/goblocks.yml;
 go get github.com/ElliottLandsborough/goblocks;
+```
+
+```
+wget https://raw.githubusercontent.com/ArtBIT/shutter-cloudapp-plugin/master/CloudApp.pm;
+sudo mv CloudApp.pm /usr/share/shutter/resources/system/upload_plugins/upload/CloudApp.pm;
+sudo chown root:root /usr/share/shutter/resources/system/upload_plugins/upload/CloudApp.pm;
+sudo chmod a+x /usr/share/shutter/resources/system/upload_plugins/upload/CloudApp.pm;
 ```
 
 ## Get lid status
