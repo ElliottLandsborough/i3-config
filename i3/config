@@ -46,6 +46,9 @@ bindsym $mod+Shift+q kill
 # wireless
 exec --no-startup-id wicd-gtk -t
 
+# start pidgin
+exec --no-startup-id pidgin
+
 # wallpaper
 exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque_ste.png
 #exec --no-startup-id feh --bg-scale /home/elliott/Pictures/Wallpapers/long-exposure-of-the-eclipse-x-post-from-rwoahdude-1920×1080.grayscale.jpg
@@ -59,10 +62,9 @@ exec --no-startup-id blueman-applet
 # power manager
 exec --no-startup-id xfce4-power-manager
 
-# print screen
-bindsym --release Print exec "scrot -m '/home/elliott/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
-bindsym --release Shift+Print exec "scrot -s '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
-bindsym --release $mod+Shift+Print exec "scrot -u -d 4 '/home/elliott/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+# print screen: run shutter in select mode for screenshots
+bindsym Print exec shutter -s -C
+
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
