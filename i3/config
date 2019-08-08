@@ -63,7 +63,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id xfce4-power-manager
 
 # time tracking
-exec --no-startup-id /home/elliott/Apps/activitywatch/aw-qt
+#exec --no-startup-id /home/elliott/Apps/activitywatch/aw-qt
 
 # print screen: run shutter in select mode for screenshots
 bindsym Print exec shutter -s -C
