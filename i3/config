@@ -194,7 +194,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     #status_command ~/Apps/i3-config/submodules/goblocks/goblocks
-    status_command ~/go/bin/goblocks
+    status_command ~/work/bin/goblocks
+
 	#status_command i3status
     #colors {
     #    statusline #AAAAAA
