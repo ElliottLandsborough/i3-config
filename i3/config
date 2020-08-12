@@ -51,7 +51,9 @@ exec --no-startup-id pidgin
 
 # wallpaper
 exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque_ste.png
-#exec --no-startup-id feh --bg-scale /home/elliott/Pictures/Wallpapers/long-exposure-of-the-eclipse-x-post-from-rwoahdude-1920×1080.grayscale.jpg
+
+# clipboard
+exec --no-startup-id clipit
 
 # dual screen
 #exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --auto --output DVI-D-0 --auto --right-of HDMI-0 --rotate left
@@ -67,7 +69,6 @@ exec --no-startup-id xfce4-power-manager
 
 # print screen: run shutter in select mode for screenshots
 bindsym Print exec shutter -s -C
-
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run

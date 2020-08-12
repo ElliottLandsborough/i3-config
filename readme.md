@@ -95,6 +95,7 @@ google-chrome-stable
 gtk-chtheme
 i3
 i3lock-fancy
+clipit
 intel-microcode
 j4-dmenu-desktop
 leafpad
