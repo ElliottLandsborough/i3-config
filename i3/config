@@ -210,8 +210,7 @@ client.focused_inactive #333333 #333333 #FFFFFF #000000
 client.focused #000000 #000000 #FFFFFF #000000
 
 # lock screen with win+l
-#bindsym $mod+Mod1+l exec "~/Apps/i3-config/submodules/i3lock-fancy/lock -t ''"
-bindsym $mod+l exec "~/Apps/i3-config/scripts/lock/fuzzy_lock.sh"
+bindsym $mod+l exec "i3lock-fancy -p"
 
 # lock screen after 5 minutes
 #exec xautolock -time 5 -locker '~/Apps/i3-config/submodules/i3lock-fancy/lock -t ""' &
