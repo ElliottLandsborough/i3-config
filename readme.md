@@ -1,8 +1,7 @@
 # i3 Config
 
-
-
 ## Installation
+
 ```
 sudo apt install i3 i3lock scrot xbacklight j4-dmenu-desktop imagemagick feh wicd-gtk xfce4-power-manager shutter;
 mkdir -p ~/Apps
@@ -28,11 +27,13 @@ sudo chmod a+x /usr/share/shutter/resources/system/upload_plugins/upload/CloudAp
 ```
 
 ## Get lid status
+
 ```
 grep -Fxq "open" /proc/acpi/button/lid/LID/state
 ```
 
 ## Lock Screen On Sleep/Suspend
+
 ```
 sudo nano /etc/systemd/system/i3lock.service
 ```
@@ -74,13 +75,16 @@ i3lock -u -i $img
 
 # Packages installed after OS install
 
+```
 comm -13 \
   <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort) \
   <(comm -23 \
     <(dpkg-query -W -f='${Package}\n' | sed 1d | sort) \
     <(apt-mark showauto | sort) \
   )
+```
 
+```
 apt-transport-https
 curl
 feh
@@ -90,7 +94,7 @@ gksu
 google-chrome-stable
 gtk-chtheme
 i3
-i3lock
+i3lock-fancy
 intel-microcode
 j4-dmenu-desktop
 leafpad
@@ -121,7 +125,6 @@ wicd-gtk
 xbacklight
 xfce4-goodies
 
-```
 apt-transport-https
 cmatrix
 curl
