@@ -11,7 +11,7 @@
 
 set $mod Mod4
 set $dmenu "dmenu -f -i -fn 'DejaVu Sans-10' -l 20"
-set $term "i3-sensible-terminal"
+set $term "/home/person/.cargo/bin/alacritty"
 
 # set sway to en-gb
 input * {
@@ -55,14 +55,13 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id pidgin
 
 # wallpaper
-exec --no-startup-id feh --bg-tile /home/elliott/Pictures/Wallpapers/escheresque_ste.png
-#exec --no-startup-id feh --bg-scale /home/elliott/Pictures/Wallpapers/long-exposure-of-the-eclipse-x-post-from-rwoahdude-1920×1080.grayscale.jpg
+exec --no-startup-id feh --bg-tile "/home/person/Pictures/escheresque_ste.png"
 
 # wayland wallpaper
-exec --no-startup-id swaybg --mode=tile --image="/home/elliott/Pictures/Wallpapers/escheresque_ste.png"
+exec --no-startup-id swaybg --mode=tile --image="/home/person/Pictures/escheresque_ste.png"
 
 # clipboard
-exec --no-startup-id clipit
+exec --no-startup-id diodon
 
 # dual screen
 #exec --no-startup-id xrandr --dpi 96 --output HDMI-0 --auto --output DVI-D-0 --auto --right-of HDMI-0 --rotate left
@@ -71,7 +70,7 @@ exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
 
 # power manager
-exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id xfce4-power-manager
 
 # time tracking
 #exec --no-startup-id /home/elliott/Apps/activitywatch/aw-qt
@@ -204,7 +203,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     #status_command ~/Apps/i3-config/submodules/goblocks/goblocks
-    status_command ~/work/bin/goblocks
+    status_command ~/go/bin/goblocks
 
 	#status_command i3status
     #colors {
@@ -219,17 +218,26 @@ client.unfocused #333333 #333333 #FFFFFF #333333
 client.focused_inactive #333333 #333333 #FFFFFF #000000
 client.focused #000000 #000000 #FFFFFF #000000
 
+set $lock 'swaylock -f --color 222222'
+
+bindswitch --reload --locked lid:on exec $lock
+
 # lock screen with win+l
-bindsym $mod+l exec "i3lock-fancy -p"
+#bindsym $mod+l exec "i3lock-fancy -p"
+bindsym $mod+l exec "swaylock -f --color 222222"
 
 # lock screen after 5 minutes
 #exec xautolock -time 5 -locker '~/Apps/i3-config/submodules/i3lock-fancy/lock -t ""' &
-exec xautolock -time 5 -locker '~/Apps/i3-config//scripts/lock/fuzzy_lock.sh' &
-
+#exec xautolock -time 5 -locker '~/Apps/i3-config//scripts/lock/fuzzy_lock.sh' &
+exec swayidle -w \
+  	    timeout 300 $lock \
+  	    timeout 600 'swaymsg "output * dpms off"' \
+  		     resume 'swaymsg "output * dpms on"' \
+  	   before-sleep $lock
 
 
 # do not lock screen when netflix, vlc, etc
-exec ~/Apps/i3-config/submodules/lightsonplus/lightson+.sh &
+#exec ~/Apps/i3-config/submodules/lightsonplus/lightson+.sh &
 
 # power menu
 set $sysmenu "system:  [r]eload  [l]ogout  [p]oweroff  re[b]oot"
